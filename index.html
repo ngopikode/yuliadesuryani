@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Yuliade Suryani</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #0891b2;
+            --secondary-color: #eab0d1;
+            /* Dusty Rose */
+            --dark-color: #4B4453;
+            --light-color: #f9fafb;
+            /* Krem / Off-white hangat */
+            --white: #ffffff;
+            --text-muted: #84818A;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            scroll-behavior: smooth;
+            /* cursor: none; */
+        }
+
+        /* Custom cursor */
+        .cursor {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: all 0.1s ease;
+            z-index: 9999;
+        }
+
+        .cursor.hover {
+            transform: scale(1.2) translate(-50%, -50%);
+            opacity: 0.5;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        h3,
+        h4,
+        h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .section {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Dot navigation */
+        .dot-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+
+        .dot-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dot-nav li {
+            margin-bottom: 20px;
+        }
+
+        .dot-nav a {
+            display: block;
+            width: 12px;
+            height: 12px;
+            background-color: #d1d5db;
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .dot-nav a.active {
+            background-color: var(--primary-color);
+            transform: scale(1.5);
+        }
+
+        .dot-nav .nav-label {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--dark-color);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .dot-nav a:hover .nav-label {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-color) 100%);
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            color: var(--dark-color);
+            line-height: 1.2;
+        }
+
+        .hero p.lead {
+            font-size: 1.1rem;
+        }
+
+        /* Custom card */
+        .custom-card {
+            background: var(--white);
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn-primary-custom {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(8, 145, 178, 0.3);
+            color: var(--white);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 12px auto 0;
+            border-radius: 3px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            #skills .col-lg-6 {
+                margin-bottom: 2rem;
+            }
+
+            #skills h4 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            #skills ul li h6 {
+                font-size: 1rem;
+            }
+
+            #skills ul li p {
+                font-size: 0.875rem;
+            }
+
+            .section {
+                padding: 70px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .dot-nav {
+                display: none;
+            }
+
+            .cursor {
+                display: none;
+            }
+
+            .img-fluid {
+                max-width: 250px !important;
+            }
+        }
+
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            background: var(--white);
+        }
+
+        footer a {
+            color: var(--primary-color);
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            transform: translateY(-3px);
+            color: var(--secondary-color);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(10px);
+            }
+
+            60% {
+                transform: translateY(5px);
+            }
+        }
+
+        .animate-bounce {
+            animation: bounce 2s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor"></div>
+
+    <!-- Dot Navigation -->
+    <nav class="dot-nav">
+        <ul>
+            <li><a href="#hero" class="active"><span class="nav-label">Beranda</span></a></li>
+            <li><a href="#profile"><span class="nav-label">Profil</span></a></li>
+            <li><a href="#skills"><span class="nav-label">Keahlian</span></a></li>
+            <li><a href="#education"><span class="nav-label">Pendidikan</span></a></li>
+            <li><a href="#interests"><span class="nav-label">Minat</span></a></li>
+            <li><a href="#contact"><span class="nav-label">Kontak</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero position-relative">
+        <div class="container text-center">
+            <p class="h6 mb-3" style="color: var(--text-muted); letter-spacing: 2px;" data-aos="fade-down">FRESH
+                GRADUATE</p>
+            <h1 data-aos="zoom-in">Yuliade Suryani</h1>
+            <p class="lead mt-4" style="color: var(--text-muted);" data-aos="fade-up" data-aos-delay="200">
+                Teliti, rapi, dan siap berkontribusi dalam administrasi dan manajemen data.
+            </p>
+            <div class="mt-4" data-aos="fade-up" data-aos-delay="300">
+                <a href="mailto:suryaniyuliade@gmail.com" class="btn btn-primary-custom me-3">
+                    <i class="fa-solid fa-envelope me-2"></i> Hubungi Saya
+                </a>
+                <a href="./CV - Yuliade Suryani.pdf" class="btn btn-outline-primary" target="_blank">Unduh CV</a>
+            </div>
+        </div>
+
+        <!-- Panah scroll di bawah hero -->
+        <a href="#profile" class="scroll-down position-absolute start-50 bottom-0 translate-middle-x mb-3"
+            style="color: var(--primary-color); text-decoration: none;">
+            <i class="fa-solid fa-chevron-down fa-2x animate-bounce"></i>
+        </a>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="section">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Tentang Saya</h2>
+            <div class="row align-items-center g-4">
+                <!-- Foto Profil -->
+                <div class="col-lg-5 text-center" data-aos="fade-right">
+                    <img src="./profile.jpg" class="img-fluid rounded-4 shadow-sm" style="max-width: 450px;"
+                        alt="Foto Profil Yuliade Suryani">
+                </div>
+
+                <!-- Teks Profil -->
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h2 class="mb-4">Profil</h2>
+                    <p class="text-muted" style="text-align:justify;">
+                        Fresh graduate S1 Pendidikan Teknologi Informasi dan Komputer dari Universitas Negeri Medan.
+                        Saya adalah individu yang teliti, rapi, dan bertanggung jawab dengan kemampuan komunikasi yang
+                        baik.
+                        Siap belajar, cepat beradaptasi, dan berkomitmen memberikan hasil kerja terbaik untuk mendukung
+                        kelancaran operasional perusahaan.
+                    </p>
+                    <hr class="my-4">
+
+                    <!-- Data Pribadi dan Kontak -->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Data Pribadi</h5>
+                            <p class="small mb-2"><strong>Tanggal Lahir:</strong> 09 Februari 2000</p>
+                            <p class="small mb-2"><strong>Lokasi:</strong> Pekanbaru, Riau</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Kontak & Bahasa</h5>
+                            <p class="small mb-2"><strong>Email:</strong> suryaniyuliade@gmail.com</p>
+                            <p class="small mb-2"><strong>Bahasa:</strong> Indonesia, Inggris</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Keahlian</h2>
+            <div class="row g-4">
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                        <div class="custom-card text-center">
+                            <i class="fa-solid fa-file-word fa-3x mb-4" style="color: var(--primary-color);"></i>
+                            <h5 class="fw-bold">Microsoft Office</h5>
+                            <p class="small" style="color: var(--text-muted);">Mahir dalam Word, Excel, PowerPoint untuk
+                                membuat laporan dan mengelola data. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="custom-card text-center">
+                            <i class="fa-solid fa-folder-open fa-3x mb-4" style="color: var(--primary-color);"></i>
+                            <h5 class="fw-bold">Manajemen Dokumen</h5>
+                            <p class="small" style="color: var(--text-muted);">Terampil mengelola, mengarsipkan, dan
+                                mengatur dokumen secara efisien. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="custom-card text-center">
+                            <i class="fa-solid fa-people-group fa-3x mb-4" style="color: var(--primary-color);"></i>
+                            <h5 class="fw-bold">Komunikasi & Kolaborasi</h5>
+                            <p class="small" style="color: var(--text-muted);">Mampu bekerja sama dalam tim dan
+                                berkomunikasi secara jelas dan profesional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5" data-aos="fade-up">
+            <div class="row" data-aos="fade-up">
+                <div class="col-lg-6">
+                    <h4 class="mb-4">Hard Skills</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <h6 class="fw-bold">Microsoft Office (Word, Excel, PowerPoint)</h6>
+                            <p class="small" style="color: var(--text-muted);">Mampu membuat dokumen, laporan, tabel,
+                                grafik, dan presentasi sederhana dengan rapi dan terstruktur.</p>
+                        </li>
+                        <li class="mb-3">
+                            <h6 class="fw-bold">Pengelolaan Dokumen dan Administrasi</h6>
+                            <p class="small" style="color: var(--text-muted);">Terbiasa mengatur, menyimpan, dan
+                                mengarsipkan dokumen agar mudah ditemukan dan digunakan.</p>
+                        </li>
+                        <li class="mb-3">
+                            <h6 class="fw-bold">Dasar Excel</h6>
+                            <p class="small" style="color: var(--text-muted);">Dapat membuat tabel, menggunakan rumus
+                                sederhana, dan mengolah data untuk keperluan administrasi.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <h4 class="mb-4">Soft Skills</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <h6 class="fw-bold">Teliti dan Detail-Oriented</h6>
+                            <p class="small" style="color: var(--text-muted);">Memastikan data dan dokumen tersusun rapi
+                                serta meminimalisir kesalahan.</p>
+                        </li>
+                        <li class="mb-3">
+                            <h6 class="fw-bold">Manajemen Waktu</h6>
+                            <p class="small" style="color: var(--text-muted);">Mampu mengatur prioritas pekerjaan agar
+                                target dapat tercapai tepat waktu.</p>
+                        </li>
+                        <li class="mb-3">
+                            <h6 class="fw-bold">Disiplin dan Bertanggung Jawab</h6>
+                            <p class="small" style="color: var(--text-muted);">Memiliki komitmen terhadap pekerjaan dan
+                                dapat diandalkan.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">Riwayat Pendidikan</h2>
+            <div class="row justify-content-center g-4">
+
+                <!-- Universitas -->
+                <div class="col-md-6" data-aos="fade-up">
+                    <a href="https://pddikti.kemdiktisaintek.go.id/detail-mahasiswa/6hzDktbVKa5gL1ExqW_mqvpL8t6uDpGrKK9BAhEPvb8LEvTfYlo-c8Z41ALQfIAUsI5prQ=="
+                        target="_blank" style="text-decoration: none; color: inherit;">
+                        <div class="custom-card h-100" style="cursor: pointer;">
+                            <p class="fw-bold" style="color: var(--primary-color);">2018 - 2025</p>
+                            <h4 class="fw-bold">Universitas Negeri Medan (UNIMED)</h4>
+                            <p style="color: var(--text-muted);">S1 – Pendidikan Teknologi Informasi dan Komputer</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- SMA -->
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://sman11-pekanbaru.sch.id" target="_blank"
+                        style="text-decoration: none; color: inherit;">
+                        <div class="custom-card h-100" style="cursor: pointer;">
+                            <p class="fw-bold" style="color: var(--primary-color);">2015 - 2018</p>
+                            <h4 class="fw-bold">SMA Negeri 11</h4>
+                            <p style="color: var(--text-muted);">Ilmu Pengetahuan Alam</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="interests" class="section">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">Minat & Hobi </h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4 col-lg-3" data-aos="zoom-in">
+                    <div class="custom-card text-center">
+                        <i class="fa-solid fa-book-open-reader fa-2x mb-3" style="color: var(--primary-color);"></i>
+                        <h6 class="fw-bold">Membaca & Menulis</h6>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="custom-card text-center">
+                        <i class="fa-solid fa-file-invoice fa-2x mb-3" style="color: var(--primary-color);"></i>
+                        <h6 class="fw-bold">Mengelola Dokumen</h6>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="custom-card text-center">
+                        <i class="fa-solid fa-lightbulb fa-2x mb-3" style="color: var(--primary-color);"></i>
+                        <h6 class="fw-bold">Belajar Hal Baru</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section text-center">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Mari Terhubung</h2>
+            <p class="lead text-muted my-4" data-aos="fade-up" data-aos-delay="100">Saya sangat antusias untuk
+                berdiskusi tentang bagaimana saya dapat memberikan nilai tambah bagi tim Anda.</p>
+            <a href="https://wa.me/6281267501291?text=Halo%20Yuliade%20Suryani%2C%0Asaya%20tertarik%20dengan%20portofolio%20Anda%20dan%20ingin%20berdiskusi%20lebih%20lanjut.%0AApakah%20saya%20bisa%20menghubungi%20Anda%20sekarang%3F%0ATerima%20kasih."
+                target="_blank" class="btn btn-primary-custom" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-paper-plane me-2"></i> Kirim Pesan
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p class="text-muted mb-0 small">&copy; 2025 Yuliade Suryani. Didesain dengan penuh semangat. <br>
+            <a href="#"><i class="fab fa-linkedin fa-lg"></i></a>
+            <a href="mailto:suryaniyuliade@gmail.com"><i class="fa-solid fa-envelope fa-lg"></i></a>
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 50 });
+
+        // Custom cursor logic
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.top = e.pageY + "px";
+            cursor.style.left = e.pageX + "px";
+        });
+
+        document.querySelectorAll('a, button, .custom-card').forEach(el => {
+            el.addEventListener('mouseover', () => { cursor.classList.add('hover'); });
+            el.addEventListener('mouseout', () => { cursor.classList.remove('hover'); });
+        });
+
+        // Dot nav scroll active
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.dot-nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 80;
+                if (pageYOffset >= sectionTop) current = section.getAttribute('id');
+            });
+
+            navLinks.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').substring(1) === current) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
